@@ -6,27 +6,27 @@ const Random = class {
 
     this.result = 0
   }
-  asi32() {
+  asInteger() {
     return this.result
   }
-  asf32() {
+  asFloat() {
     return this.result | 0
   }
   fromRange(min, max) {
     this.result = this.prng() * (max - min) + min
     return this
   }
-  f32(n = 1.0) {
+  float(n = 1.0) {
     return n * this.prng()
   }
-  i32(i = 1) {
+  integer(i = 1) {
     return (this.prng() * Math.floor(i)) | 0
   }
   chance(probability) {
     return this.prng() < probability
   }
   fromArray(array) {
-    return array[this.i32(array.length)]
+    return array[this.integer(array.length)]
   }
   fromObject(object) {
     let values = Object.values(object)
@@ -34,14 +34,14 @@ const Random = class {
   }
   index(probabilities = []) {
     let totalProbability = probabilities.reduce((a, b) => a + b, 0)
-    let chance = this.f32(totalProbability)
+    let chance = this.float(totalProbability)
     for (let [i, probability] of probabilities.entries()) {
       if (chance < probability) return i
       chance -= probability
     }
   }
   shuffleArray(array) {
-    return array.slice().sort(() => 0.5 - this.f32())
+    return array.slice().sort(() => 0.5 - this.float())
   }
 }
 
