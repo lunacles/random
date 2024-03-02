@@ -2,7 +2,6 @@ const Random = class {
   constructor(prng = () => Math.random()) {
     if (typeof prng !== 'function') throw new Error('Invalid PRNG')
     this.prng = prng
-    this.type = null
 
     this.result = 0
   }
