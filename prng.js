@@ -5,11 +5,11 @@ const PRNG = {
   // Small Fast Counter 32-Bit
   // https://pracrand.sourceforge.net/
   sfc32(a = 1, b = 1, c = 1, d = 1) {
+    a >>>= 0
+    b >>>= 0
+    c >>>= 0
+    d >>>= 0
     return () => {
-      a >>>= 0
-      b >>>= 0
-      c >>>= 0
-      d >>>= 0
       let t = (a + b) | 0
       a = b ^ b >>> 9
       b = c + (c << 3) | 0
@@ -23,9 +23,9 @@ const PRNG = {
   // SplitMix32
   // https://en.wikipedia.org/wiki/Hamming_weight
   splitMix32(a = 1) {
+    a |= 0
+    a = a + 0x9e3779b9 | 0
     return () => {
-      a |= 0
-      a = a + 0x9e3779b9 | 0
       let t = a ^ a >>> 16
       t = Math.imul(t, 0x21f0aaad)
       t = t ^ t >>> 15
